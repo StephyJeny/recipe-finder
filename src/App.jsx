@@ -1,27 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FiMenu, FiX, FiSun, FiMoon, FiHome, FiHeart } from "react-icons/fi";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
-
-function Home() {
-  return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-bold mb-2">Welcome to Recipe Finder</h1>
-      <p className="text-gray-600">Search and save your favorite recipes!</p>
-    </div>
-  );
-}
-
-function Favorites() {
-  return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-bold mb-2">Your Favorites</h1>
-      <p className="text-gray-600">Saved recipes will appear here.</p>
-    </div>
-  );
-}
 
 function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);

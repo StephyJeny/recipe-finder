@@ -12,8 +12,22 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    return saved ? JSON.parse(saved) : false;
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === null) return false;
+      
+      // Handle both JSON boolean and string values
+      if (saved === 'true' || saved === 'dark') return true;
+      if (saved === 'false' || saved === 'light') return false;
+      
+      // Try to parse as JSON
+      return JSON.parse(saved);
+    } catch (error) {
+      console.warn('Error parsing theme from localStorage:', error);
+      // Clear corrupted data and return default
+      localStorage.removeItem('theme');
+      return false;
+    }
   });
 
   useEffect(() => {
